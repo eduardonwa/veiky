@@ -15,8 +15,8 @@ Antes de comenzar, asegúrate de tener las siguientes herramientas instaladas:
 
 1. **Clona el repositorio**:
    ```sh
-   git clone https://github.com/eduardonwa/astrolinker-live.git
-   cd astrolinker-live
+   git clone https://github.com/eduardonwa/astrolinker.git
+   cd astrolinker
    ```
 
 2. **Instala las dependencias**:
