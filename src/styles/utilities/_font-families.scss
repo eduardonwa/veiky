@@ -1,0 +1,21 @@
+@use "../abstracts/" as *;
+
+.ff-base {
+  font-family: $font-family-base;
+}
+
+.ff-medium {
+  font-family: $font-family-medium;
+}
+
+.ff-bold {
+  font-family: $font-family-bold;
+}
+
+.ff-accent {
+  font-family: $font-family-accent;
+}
+
+.ff-accent-black {
+  font-family: $font-family-accent-black;
+}

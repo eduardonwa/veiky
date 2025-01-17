@@ -1,0 +1,40 @@
+@font-face {
+  font-family: "Lora Bold";
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/Lora-Bold.ttf") format("woff2"),
+    url("/fonts/Lora-Bold.woff") format("woff"),
+    url("/fonts/Lora-Bold.ttf") format("ttf");
+}
+@font-face {
+  font-family: "Lora Medium";
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/Lora-Medium.woff2") format("woff2"),
+    url("/fonts/Lora-Medium.woff") format("woff"),
+    url("/fonts/Lora-Medium.ttf") format("ttf");
+}
+@font-face {
+  font-family: "Lora Regular";
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/Lora-Regular.woff2") format("woff2"),
+    url("/fonts/Lora-Regular.woff") format("woff"),
+    url("/fonts/Lora-Regular.ttf") format("ttf");
+}
+@font-face {
+  font-family: "Poppins Black";
+  font-weight: 900;
+  font-display: swap;
+  src: url("/fonts/Poppins-Black.woff2") format("woff2"),
+    url("/fonts/Poppins-Black.woff") format("woff"),
+    url("/fonts/Poppins-Black.ttf") format("ttf");
+}
+@font-face {
+  font-family: "Poppins Bold";
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/Poppins-Bold.woff2") format("woff2"),
+    url("/fonts/Poppins-Bold.woff") format("woff"),
+    url("/fonts/Poppins-Bold.ttf") format("ttf");
+}
