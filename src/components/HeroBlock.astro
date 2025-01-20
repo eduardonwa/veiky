@@ -1,0 +1,14 @@
+---
+const { encabezado = "", subtitulo = "", imagenUrl = "", testimonio = "", botonCTA = null } = Astro.props;
+---
+<section>
+  <h2>{encabezado}</h2>
+  {subtitulo && <p>{subtitulo}</p>}
+  {imagenUrl && <img src={imagenUrl} alt={`Imagen de ${encabezado}`} loading="lazy" />}
+  {testimonio && <blockquote>{testimonio}</blockquote>}
+  {botonCTA && (
+    <a href={botonCTA.enlace} aria-label={`Ir a ${botonCTA.texto}`}>
+      {botonCTA.texto}
+    </a>
+  )}
+</section>

@@ -4,14 +4,15 @@ const visualEditingEnabled =
   import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED === "true";
 const token = import.meta.env.SANITY_API_READ_TOKEN;
 
-export async function loadQuery({ query, params }) {
+export async function loadQuery({ query, params, cookies }) {
   if (visualEditingEnabled && !token) {
     throw new Error(
       "The `SANITY_API_READ_TOKEN` environment variable is required during Visual Editing.",
     );
   }
-
-  const perspective = visualEditingEnabled ? "previewDrafts" : "published";
+  
+  const isDraftMode = cookies.get('sanity-draft-mode') === 'true';
+  const perspective = isDraftMode ? "previewDrafts" : "published";
 
   const { result, resultSourceMap } = await sanityClient.fetch(
     query,

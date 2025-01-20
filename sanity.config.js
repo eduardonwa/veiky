@@ -14,8 +14,15 @@ export default defineConfig({
       structure: myStructure,
     }),
     presentationTool({
+      previewUrl: {
+        origin: 'http://localhost:4321',
+        preview: '/',
+        previewMode: {
+          enable: '/api/draft',
+          disable: '/api/disable-draft',
+        },
+      },
       resolve,
-      previewUrl: location.origin,
     }),
     visionTool(),
   ],

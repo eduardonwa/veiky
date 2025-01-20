@@ -1,0 +1,13 @@
+---
+const { titulo, subtitulo, imagenUrl } = Astro.props;
+---
+
+<section class="split-image-section">
+  <div class="split-image-content">
+    <h2>{titulo}</h2>
+    <p>{subtitulo}</p>
+  </div>
+  <figure class="split-image-figure">
+    <img src={imagenUrl} alt="" loading="lazy" />
+  </figure>
+</section>

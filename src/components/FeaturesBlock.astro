@@ -1,0 +1,14 @@
+---
+const { titulo, caracteristicas } = Astro.props;
+---
+<section class="features-section">
+  <h2>{titulo}</h2>
+  <ul class="features-list">
+    {caracteristicas.map((feature, index) => (
+      <li class="feature-item">
+        <h3 class="feature-title">{feature.titulo}</h3>
+        <p class="feature-text">{feature.texto}</p>
+      </li>
+    ))}
+  </ul>
+</section>

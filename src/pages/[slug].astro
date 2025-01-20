@@ -1,19 +1,26 @@
 ---
-import { client } from '../sanity/lib/client';
-import { homePageQuery } from '../sanity/lib/queries';
+import { loadQuery } from '../sanity/lib/load-query';
+import { pageQuery } from '../sanity/lib/queries';
 import Layout from "../layouts/Layout.astro";
 import HeroBlock from "../components/HeroBlock.astro";
 import SplitImageBlock from "../components/SplitImageBlock.astro";
 import FeaturesBlock from "../components/FeaturesBlock.astro";
 import FaqsBlock from "../components/FaqsBlock.astro";
 
-// Consultar la página con isHome == true directamente sin usar pageQuery
-const homePage = await client.fetch(homePageQuery);
+const { slug } = Astro.params;
+const { data: pageData, perspective } = await loadQuery({
+  query: pageQuery,
+  params: { slug },
+  cookies: Astro.cookies
+});
 
-// Si no se encuentra la página principal, lanzar error o manejarlo como desees
-if (!homePage) {
-  return Astro.redirect('/404');
-}
+const isDraftMode = perspective === 'previewDrafts';
+
+if (!pageData || !pageData.content || !Array.isArray(pageData.content)) {
+     if (!isDraftMode) {
+       return Astro.redirect('/404');
+     }
+   }
 
 // Mapear los componentes a los bloques
 const blockComponents = {
@@ -23,10 +30,8 @@ const blockComponents = {
   faqs: FaqsBlock,
 };
 ---
-
 <Layout>
-  <!-- Renderizar los bloques de contenido para la página principal -->
-  {homePage.content.map((bloque) => {
+  {pageData.content.map((bloque) => {
     const BlockComponent = blockComponents[bloque._type];
     return BlockComponent ? (
       <BlockComponent {...bloque} />

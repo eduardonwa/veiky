@@ -9,7 +9,6 @@ export const myStructure = (S) =>
         ),
       S.divider(),
         S.documentTypeListItem("page").title("Páginas"),
-        S.documentTypeListItem("faq").title("Preguntas frecuentes"),
       S.divider(),
         // todas las publicaciones
         S.listItem()

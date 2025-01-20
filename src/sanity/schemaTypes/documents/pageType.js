@@ -1,5 +1,6 @@
 import { DocumentIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
+import { client } from '../../lib/client';
 
 export const pageType = defineType({
   name: "page",
@@ -28,12 +29,36 @@ export const pageType = defineType({
       options: {
         hotspot: true,
       },
-    }),    
+    }),
+    defineField({
+      name: 'isHome',
+      type: 'boolean',
+      title: '¿Es la página principal?',
+      validation: (Rule) =>
+        Rule.custom(async (isHome, context) => {
+          if (!isHome) return true; // No hay necesidad de validar si no es la página principal
+          const pages = await client.fetch(
+            `*[_type == "page" && isHome == true && _id != $currentId]`,
+            { currentId: context.document._id }
+          );
+          return pages.length === 0
+            ? true
+            : 'Solo una página puede ser la principal.';
+        }),
+    })
   ],
   preview: {
     select: {
       title: "title",
       subtitle: "slug.current",
+      isHome: 'isHome',
     },
+    prepare(selection) {
+      const { title, isHome } = selection;
+      return {
+        title,
+        subtitle: isHome ? 'Página principal' : '',
+      }
+    }
   },
 });

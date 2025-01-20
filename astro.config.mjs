@@ -1,5 +1,4 @@
 import { defineConfig } from "astro/config";
-
 import sanity from "@sanity/astro";
 import react from "@astrojs/react";
 
@@ -17,7 +16,7 @@ export default defineConfig({
       projectId: PUBLIC_SANITY_PROJECT_ID,
       dataset: PUBLIC_SANITY_DATASET,
       useCdn: false, // See note on using the CDN
-      apiVersion: "2023-07-24", // insert the current date to access the latest version of the API
+      apiVersion: "2025-01-20", // insert the current date to access the latest version of the API
       studioBasePath: "/studio",
       stega: {
         studioUrl: "/studio",

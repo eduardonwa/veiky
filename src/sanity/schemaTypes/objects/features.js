@@ -6,24 +6,28 @@ export const featuresType = defineType({
   type: "object",
   fields: [
     defineField({
-      name: "title",
+      name: "titulo",
+      title: "Título",
       type: "string",
     }),
     defineField({
-      name: "features",
+      name: "caracteristicas",
+      title: "Características",
       type: "array",
       of: [
         defineField({
-          name: "feature",
+          name: "caracteristica",
+          title: "Característica",
           type: "object",
           fields: [
             defineField({
-              name: "title",
+              name: "titulo",
+              title: "Título",
               type: "string",
             }),
             defineField({
-              name: "text",
-              type: "string",
+              name: "texto",
+              type: "text",
             }),
           ],
         }),
@@ -33,12 +37,12 @@ export const featuresType = defineType({
   icon: StarIcon,
   preview: {
     select: {
-      title: "title",
+      title: "titulo",
     },
     prepare({title}) {
       return {
         title,
-        subtitle: "Features"
+        subtitle: "Características"
       }
     }
   }

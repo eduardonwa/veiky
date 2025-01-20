@@ -6,34 +6,38 @@ export const splitImageType = defineType({
   type: "object",
   fields: [
     defineField({
-      name: "orientation",
+      name: "orientacion",
       type: "string",
       options: {
         list: [
-          { value: "imageLeft", title: "Image Left" },
-          { value: "imageRight", title: "Image Right" },
+          { value: "imageLeft", title: "Imagen a la izquierda" },
+          { value: "imageRight", title: "Imagen a la derecha" },
         ],
       },
     }),
     defineField({
-      name: "title",
+      name: "titulo",
       type: "string",
     }),
     defineField({
-      name: "image",
+      name: 'subtitulo',
+      type: 'text',
+    }),
+    defineField({
+      name: "imagen",
       type: "image",
     }),
   ],
   icon: BlockContentIcon,
   preview: {
     select: {
-      title: "title",
-      media: "image",
+      title: "titulo",
+      media: "imagen",
     },
     prepare({ title, media }) {
       return {
         title,
-        subtitle: "Text and Image",
+        subtitle: "Texto con imagen",
         media: media ?? BlockContentIcon,
       };
     },
