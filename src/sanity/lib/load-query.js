@@ -11,8 +11,10 @@ export async function loadQuery({ query, params, cookies }) {
     );
   }
   
-  const isDraftMode = cookies.get('sanity-draft-mode') === 'true';
+  const isDraftMode = cookies.get('sanity-draft-mode')?.value === 'true';
   const perspective = isDraftMode ? "previewDrafts" : "published";
+  console.log('Draft mode cookie:', cookies.get('sanity-draft-mode')?.value);
+  console.log('Is draft mode:', isDraftMode);
 
   const { result, resultSourceMap } = await sanityClient.fetch(
     query,
@@ -20,9 +22,9 @@ export async function loadQuery({ query, params, cookies }) {
     {
       filterResponse: false,
       perspective,
-      resultSourceMap: visualEditingEnabled ? "withKeyArraySelector" : false,
-      stega: visualEditingEnabled,
-      ...(visualEditingEnabled ? { token } : {}),
+      resultSourceMap: true,
+      stega: true,
+      token: isDraftMode ? token : undefined,
     },
   );
 

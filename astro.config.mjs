@@ -15,8 +15,8 @@ export default defineConfig({
     sanity({
       projectId: PUBLIC_SANITY_PROJECT_ID,
       dataset: PUBLIC_SANITY_DATASET,
-      useCdn: false, // See note on using the CDN
-      apiVersion: "2025-01-20", // insert the current date to access the latest version of the API
+      useCdn: false,
+      apiVersion: "2025-01-20",
       studioBasePath: "/studio",
       stega: {
         studioUrl: "/studio",
