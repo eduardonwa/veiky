@@ -36,10 +36,18 @@ export const pageType = defineType({
       title: '¿Es la página principal?',
       validation: (Rule) =>
         Rule.custom(async (isHome, context) => {
+          const { document, parent } = context;
+
+          // Solo validar si el campo isHome está siendo modificado
+          if (parent && parent.isHome === isHome) {
+            return true;
+          }
+
           if (!isHome) return true; // No hay necesidad de validar si no es la página principal
+
           const pages = await client.fetch(
             `*[_type == "page" && isHome == true && _id != $currentId]`,
-            { currentId: context.document._id }
+            { currentId: document._id }
           );
           return pages.length === 0
             ? true

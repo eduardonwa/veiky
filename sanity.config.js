@@ -6,6 +6,8 @@ import { resolve } from "./src/sanity/lib/resolve";
 import { visionTool } from "@sanity/vision";
 import { myStructure } from "./deskStructure";
 
+const SANITY_STUDIO_PREVIEW_URL = import.meta.env.SANITY_STUDIO_PREVIEW_URL || 'http://localhost:4321';
+
 export default defineConfig({
   projectId: import.meta.env.PUBLIC_SANITY_PROJECT_ID,
   dataset: import.meta.env.PUBLIC_SANITY_DATASET,
@@ -14,13 +16,9 @@ export default defineConfig({
       structure: myStructure,
     }),
     presentationTool({
-      previewUrl: {
-        draftMode: {
-          enable: '/api/draft',
-          disable: '/api/disable-draft',
-        },
-      },
       resolve,
+      title: 'Presentación',
+      previewUrl: `${SANITY_STUDIO_PREVIEW_URL}?preview=true`,
     }),
     visionTool(),
   ],

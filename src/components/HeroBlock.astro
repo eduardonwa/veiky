@@ -1,14 +1,42 @@
 ---
 const { encabezado = "", subtitulo = "", imagenUrl = "", testimonio = "", botonCTA = null } = Astro.props;
 ---
-<section>
-  <h2>{encabezado}</h2>
-  {subtitulo && <p>{subtitulo}</p>}
-  {imagenUrl && <img src={imagenUrl} alt={`Imagen de ${encabezado}`} loading="lazy" />}
-  {testimonio && <blockquote>{testimonio}</blockquote>}
-  {botonCTA && (
-    <a href={botonCTA.enlace} aria-label={`Ir a ${botonCTA.texto}`}>
-      {botonCTA.texto}
-    </a>
-  )}
-</section>
+<header
+  class="hero | margin-block-end-12"
+  role="banner"
+>
+  <!-- imagen de fondo -->
+  {imagenUrl &&
+    <img
+      class="hero__bg"
+      src={imagenUrl}
+      alt=""
+      loading="lazy"
+      aria-hidden="true"
+    />
+  }
+
+  <div class="hero__copy">
+    <!-- contenido heroe -->
+    <h1>{encabezado}</h1>
+    
+    {subtitulo &&
+      <p>{subtitulo}</p>
+    }
+        
+    {testimonio &&
+      <blockquote>
+        {testimonio}
+      </blockquote>
+    }
+    
+    {botonCTA && (
+      <a 
+        role="button"
+        href={botonCTA.enlace}
+        aria-label={`Ir a ${botonCTA.texto}`}>
+          {botonCTA.texto}
+      </a>
+    )}
+  </div>
+</header>

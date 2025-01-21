@@ -1,5 +1,5 @@
 ---
-import { client } from '../sanity/lib/client';
+import { loadQuery } from '../sanity/lib/load-query';
 import { homePageQuery } from '../sanity/lib/queries';
 import Layout from "../layouts/Layout.astro";
 import HeroBlock from "../components/HeroBlock.astro";
@@ -7,11 +7,23 @@ import SplitImageBlock from "../components/SplitImageBlock.astro";
 import FeaturesBlock from "../components/FeaturesBlock.astro";
 import FaqsBlock from "../components/FaqsBlock.astro";
 
-// Consultar la página con isHome == true directamente sin usar pageQuery
-const homePage = await client.fetch(homePageQuery);
+// definir enabled para ver si preview esta o no en la URI
+let enabled
+const referrer = Astro.url.href
+// si preview esta en la URI, mostrar borradores
+if (referrer.includes('preview')) {enabled = 'true'} else {enabled = 'false'}
 
-// Si no se encuentra la página principal, lanzar error o manejarlo como desees
-if (!homePage) {
+// Cargar los datos usando loadQuery
+const { data: homePage } = await loadQuery({
+  query: homePageQuery,
+  params: {},
+  enabled,
+});
+
+console.log(homePage);
+
+// Si no se encuentra la página principal, redirigir a 404
+if (!homePage || !homePage.content || !Array.isArray(homePage.content)) {
   return Astro.redirect('/404');
 }
 

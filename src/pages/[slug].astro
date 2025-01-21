@@ -1,5 +1,5 @@
 ---
-import { loadQuery } from '../sanity/lib/load-query';
+import { loadQuery } from '../sanity/lib/load-query'
 import { pageQuery } from '../sanity/lib/queries';
 import Layout from "../layouts/Layout.astro";
 import HeroBlock from "../components/HeroBlock.astro";
@@ -7,17 +7,25 @@ import SplitImageBlock from "../components/SplitImageBlock.astro";
 import FeaturesBlock from "../components/FeaturesBlock.astro";
 import FaqsBlock from "../components/FaqsBlock.astro";
 
+// definir enabled para ver si preview esta o no en la URI
+let enabled
+const referrer = Astro.url.href
+// si preview esta en la URI, mostrar borradores
+if (referrer.includes('preview')) {enabled = 'true'} else {enabled = 'false'}
+
 const { slug } = Astro.params;
-const { data: pageData, perspective } = await loadQuery({
+
+// Cargar los datos usando loadQuery
+const { data: pageData } = await loadQuery({
   query: pageQuery,
   params: { slug },
-  cookies: Astro.cookies
+  enabled,
 });
 
-const isDraftMode = perspective === 'previewDrafts';
+console.log(pageData);
 
-if (!pageData && !isDraftMode) {
-  return Astro.redirect('/404');
+if (!pageData || !pageData.content || !Array.isArray(pageData.content)) {
+    return Astro.redirect('/404');
 }
 
 // Mapear los componentes a los bloques
@@ -28,26 +36,12 @@ const blockComponents = {
   faqs: FaqsBlock,
 };
 ---
-<Layout>
-  {isDraftMode && (
-    <div style="position: fixed; top: 0; left: 0; right: 0; background: #ff4500; color: white; text-align: center; padding: 0.5em; z-index: 9999;">
-      Draft Mode
-    </div>
-  )}
-  {pageData && pageData.content ? (
-    pageData.content.map((bloque) => {
-      const BlockComponent = blockComponents[bloque._type];
-      return BlockComponent ? (
-        <BlockComponent {...bloque} />
-      ) : null;
-    })
-  ) : (
-    <p>No content available {isDraftMode ? 'in draft' : ''}</p>
-  )}
-</Layout>
 
-<script define:vars={{ slug, perspective, isDraftMode }}>
-  console.log('Slug:', slug);
-  console.log('Perspective:', perspective);
-  console.log('Is Draft Mode:', isDraftMode);
-</script>
+<Layout>
+  {pageData.content.map((bloque) => {
+    const BlockComponent = blockComponents[bloque._type];
+    return BlockComponent ? (
+      <BlockComponent {...bloque} />
+    ) : null;
+  })}
+</Layout>

@@ -1,5 +1,6 @@
 import { defineConfig } from "astro/config";
-import sanity from "@sanity/astro";
+
+import sanityIntegration from "@sanity/astro";
 import react from "@astrojs/react";
 
 import { loadEnv } from "vite";
@@ -12,12 +13,12 @@ const { PUBLIC_SANITY_PROJECT_ID, PUBLIC_SANITY_DATASET } = loadEnv(
 // https://astro.build/config
 export default defineConfig({
   integrations: [
-    sanity({
+    sanityIntegration({
       projectId: PUBLIC_SANITY_PROJECT_ID,
       dataset: PUBLIC_SANITY_DATASET,
-      useCdn: false,
-      apiVersion: "2025-01-20",
+      apiVersion: "2025-01-20", // insert the current date to access the latest version of the API
       studioBasePath: "/studio",
+      useCdn: false,
       stega: {
         studioUrl: "/studio",
       },

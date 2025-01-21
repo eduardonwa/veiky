@@ -1,10 +1,13 @@
 export const pageQuery = `
-  *[_type == "page" && (slug.current == $slug)][0] {
+  *[_type == "page" && slug.current == $slug][0] {
+    _id,
+    _rev,
     title,
     "slug": slug.current,
     "mainImageUrl": mainImage.asset->url,
     content[] {
       _type == "hero" => {
+        _type,
         encabezado,
         subtitulo,
         "imagenUrl": imagen.asset->url,
@@ -42,11 +45,14 @@ export const pageQuery = `
 
 export const homePageQuery = `
   *[_type == "page" && isHome == true][0] {
+    _id,
+    _rev,
     title,
     "slug": slug.current,
     "mainImageUrl": mainImage.asset->url,
     content[] {
       _type == "hero" => {
+        _type,
         encabezado,
         subtitulo,
         "imagenUrl": imagen.asset->url,

@@ -3,7 +3,7 @@ import { defineType, defineField } from "sanity";
 export const heroType = defineType({
     name: 'hero',
     type: 'object',
-    title: 'Llamado a la acción',
+    title: 'Sección Héroe',
     fields: [
         defineField({
             name: 'encabezado',
@@ -36,5 +36,5 @@ export const heroType = defineType({
             validation: (rule) => rule.required(),
         }),
     ],
-    description: 'Invita a tus clientes a realizar una acción',
+    description: 'Describe tu producto de manera que causes una buena impresión en tu cliente.',
 });
