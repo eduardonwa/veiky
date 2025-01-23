@@ -1,0 +1,33 @@
+---
+const { titulo = "", descripcion = "", imagenUrl = "", boton = null } = Astro.props;
+
+if (!titulo || !descripcion) {
+    return null;
+}
+---
+
+<section class="section flex-group mx-auto padding-4">
+    <div class="card">
+        <div class="card__img-wrap | mx-auto">
+            {imagenUrl && (
+                <img class="" src={imagenUrl} alt={titulo} class="card-image" />
+            )}
+        </div>
+    
+        <div class="text-center flow">
+            <h2 class="ff-accent fs-600">{titulo}</h2>
+            <p class="fs-500">{descripcion}</p>
+    
+            {boton && (
+                <a
+                    href={`/${boton.enlace[0]?.slug?.current || "#"}`}
+                    class="button"
+                    data-type="accent"
+                    role="button"
+                >
+                    {boton.texto}
+                </a>
+            )}
+        </div>
+    </div>
+</section>

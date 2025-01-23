@@ -23,6 +23,13 @@ export const pageQuery = `
         subtitulo,
         orientacion,
         "imagenUrl": imagen.asset->url,
+        boton {
+          texto,
+          enlace[]-> {
+            _id,
+            slug,
+          }
+        }
       },
       _type == "features" => {
         _type,
@@ -39,7 +46,36 @@ export const pageQuery = `
           title,
           "faqText": body[].children[].text
         }
-      }
+      },
+      _type == "card" => {
+        _type,
+        titulo,
+        descripcion,
+        "imagenUrl": imagen.asset->url,
+        boton {
+          texto,
+          enlace[]->{
+            _id,
+            slug,
+          }
+        }
+      },
+      _type == "cardSet" => {
+        _type,
+        encabezado,
+        setTarjetas[] {
+          titulo,
+          descripcion,
+          "imagenUrl": imagen.asset->url,
+          boton {
+            texto,
+            enlace[]-> {
+              _id,
+              slug,
+            }
+          }
+        }
+      },
     }
   }
 `;
@@ -86,7 +122,36 @@ export const homePageQuery = `
           title,
           "faqText": body[].children[].text
         }
-      }
+      },
+      _type == "card" => {
+        _type,
+        titulo,
+        descripcion,
+        "imagenUrl": imagen.asset->url,
+        boton {
+          texto,
+          enlace[]->{
+            _id,
+            slug,
+          }
+        }
+      },
+      _type == "cardSet" => {
+        _type,
+        encabezado,
+        setTarjetas[] {
+          titulo,
+          descripcion,
+          "imagenUrl": imagen.asset->url,
+          boton {
+            texto,
+            enlace[]-> {
+              _id,
+              slug,
+            }
+          }
+        }
+      },
     }
   }
 `;

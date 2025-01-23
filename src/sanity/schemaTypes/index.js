@@ -16,6 +16,8 @@ import { pageBuilderType } from "./documents/pageBuilder";
 import { pageType } from "./documents/pageType";
 import { siteSettingsType } from "./documents/siteSettings";
 import { navigationType } from "./documents/navigation";
+import { cardType } from "./objects/card";
+import { cardSetType } from "./objects/cardSet";
 
 export const schema = {
   types: [
@@ -37,5 +39,7 @@ export const schema = {
     pageType,
     navigationType,
     siteSettingsType,
+    cardType,
+    cardSetType,
   ],
 };

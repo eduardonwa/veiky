@@ -15,6 +15,14 @@
   transition: 275ms ease;
   filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.152));
 
+  @include mq(small) {
+    width: 100%;
+  }
+
+  @include mq(medium) {
+    width: fit-content;
+  }
+
   &[data-type="accent"] {
     background-color: $button-accent-background;
     color: $button-accent-color;
@@ -30,6 +38,8 @@
   &[data-type="primary"] {
     background-color: $button-primary-background;
     color: $button-primary-color;
+    font-size: $font-size-500;
+    font-family: $font-family-accent;
 
     &:is(:hover, :focus) {
       background-color: $button-primary-background-hover;

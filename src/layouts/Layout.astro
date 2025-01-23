@@ -3,7 +3,7 @@
 import { VisualEditing } from "@sanity/astro/visual-editing";
 import { navbarQuery } from '../sanity/lib/queries';
 import { loadQuery } from '../sanity/lib/load-query';
-import Navbar from '../components/Navbar.astro';
+import NavbarBlock from '../components/NavbarBlock.astro';
 import '/src/styles/main.scss';
 
 const { title } = Astro.props;
@@ -38,7 +38,7 @@ const visualEditingEnabled =
   </head>
   <body>
     
-    <Navbar navbar={navbar} />
+    <NavbarBlock navbar={navbar} />
 
     <slot />
     <VisualEditing enabled={visualEditingEnabled} />

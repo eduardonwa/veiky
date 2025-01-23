@@ -1,5 +1,7 @@
 ---
-const { titulo, subtitulo, imagenUrl, orientacion } = Astro.props;
+const { titulo, subtitulo, imagenUrl, orientacion, boton} = Astro.props;
+// Verifica si hay un enlace y obtén el primer enlace del array
+const enlace = boton?.enlace?.[0];
 ---
 
 <section class="section container" data-type="">
@@ -11,6 +13,16 @@ const { titulo, subtitulo, imagenUrl, orientacion } = Astro.props;
     <div class="split-image__content | flow">
       <h2>{titulo}</h2>
       <p>{subtitulo}</p>
+      {enlace && (
+        <a
+          href={`${enlace.slug.current}`}
+          class="button"
+          data-type="primary"
+          role="button"
+        >
+          {boton.texto}
+        </a>
+      )}
     </div>
   </article>
 </section>

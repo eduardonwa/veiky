@@ -1,0 +1,37 @@
+---
+const { encabezado = "", setTarjetas = [] } = Astro.props;
+if (!encabezado || setTarjetas.length === 0) {
+    return null; // No renderizar si no hay datos
+}
+---
+
+<section class="section container">
+
+    <h2 class="fs-800 clr-neutral-800 text-center margin-block-end-8 ff-accent">{encabezado}</h2>
+
+    <article class="even-columns mx-auto">
+        {setTarjetas.map ((tarjeta) => (
+            <div class="card">   
+                <div class="card__img-wrap | mx-auto">
+                    <img src={tarjeta.imagenUrl} alt={tarjeta.titulo} />
+                </div>
+
+                <div class="text-center flow">
+                    <h3 class="ff-accent fs-600">{tarjeta.titulo}</h3>
+                    <p class="fs-500">{tarjeta.descripcion}</p>
+
+                    {tarjeta.boton && (
+                        <a
+                            href={`${tarjeta.boton.enlace[0]?.slug?.current || "#"}`}
+                            class="button"
+                            data-type="accent"
+                            role="button"    
+                        >
+                            {tarjeta.boton.texto}
+                        </a>
+                    )}
+                </div>
+            </div>
+        ))}
+    </article>
+</section>

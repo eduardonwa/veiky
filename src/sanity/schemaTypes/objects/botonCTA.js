@@ -15,7 +15,13 @@ export const botonCTAType = defineType({
         {
             name: 'enlace',
             title: 'Enlace',
-            type: 'string',
+            type: 'array',
+            of: [
+                {
+                    type: 'reference',
+                    to: [{ type: 'page' }]
+                }
+            ],
             validation: (rule) => rule.required(),
         },
     ],

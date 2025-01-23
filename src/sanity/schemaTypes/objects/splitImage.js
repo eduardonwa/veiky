@@ -30,6 +30,10 @@ export const splitImageType = defineType({
         hotspot: true,
       },
     }),
+    defineField({
+      name: 'boton',
+      type: 'botonCTA',
+    }),
   ],
   icon: BlockContentIcon,
   preview: {
