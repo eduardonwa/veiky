@@ -1,0 +1,21 @@
+@use "../abstracts" as *;
+
+.simple-text {
+    &__content {
+
+        p {            
+            padding-block-end: $size-5;
+
+            @include mq(large) {
+                width: 60ch;
+                margin: auto;
+            }
+        }
+
+        img {
+            margin: 1rem auto;
+            width: 500px;
+            border-radius: $border-radius-2;
+        }
+    }
+}

@@ -11,6 +11,7 @@ export const pageBuilderType = defineType({
     defineArrayMember({ type: "card" }),
     defineArrayMember({ type: "cardSet" }),
     defineArrayMember({ type: "staticGallery" }),
+    defineArrayMember({ type: "simpleText" }),
   ],
   options: {
     insertMenu: {

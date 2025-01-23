@@ -1,0 +1,18 @@
+---
+import PortableText from "./PortableText.astro";
+
+const { titulo = "", texto = [] } = Astro.props;
+
+if (!titulo || texto.length === 0) {
+    return null; // No renderizar si no hay datos mínimos
+}
+---
+
+<section class="simple-text | container section">
+    <article class="flow text-center">
+        <h2 class="fs-700 ff-accent">{titulo}</h2>
+        <div class="simple-text__content | fs-600">
+            <PortableText portableText={texto} />
+        </div>
+    </article>
+</section>

@@ -86,6 +86,11 @@ export const pageQuery = `
           subtitulo,
         }
       },
+      _type == "simpleText" => {
+        _type,
+        titulo,
+        texto,
+      },
     }
   }
 `;
@@ -171,6 +176,11 @@ export const homePageQuery = `
           titulo,
           subtitulo,
         }
+      },
+      _type == "simpleText" => {
+        _type,
+        titulo,
+        texto,
       },
     }
   }

@@ -20,6 +20,7 @@ import { cardType } from "./objects/card";
 import { cardSetType } from "./objects/cardSet";
 import { imagenTextoType } from "./objects/imagenTexto";
 import { staticGalleryType } from "./objects/staticGallery";
+import { simpleTextType } from "./objects/simpleText";
 
 export const schema = {
   types: [
@@ -45,5 +46,6 @@ export const schema = {
     cardSetType,
     imagenTextoType,
     staticGalleryType,
+    simpleTextType,
   ],
 };
