@@ -1,13 +1,16 @@
 ---
-const { titulo, subtitulo, imagenUrl } = Astro.props;
+const { titulo, subtitulo, imagenUrl, orientacion } = Astro.props;
 ---
 
-<section class="split-image-section">
-  <div class="split-image-content">
-    <h2>{titulo}</h2>
-    <p>{subtitulo}</p>
-  </div>
-  <figure class="split-image-figure">
-    <img src={imagenUrl} alt="" loading="lazy" />
-  </figure>
+<section class="section container" data-type="">
+  <article class={`split-image ${orientacion}`}>
+    <figure class="split-image__figure">
+      <img class="border-radius-1" src={imagenUrl} alt="" loading="lazy" />
+    </figure>
+
+    <div class="split-image__content | flow">
+      <h2>{titulo}</h2>
+      <p>{subtitulo}</p>
+    </div>
+  </article>
 </section>

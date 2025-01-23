@@ -1,9 +1,9 @@
 import { defineConfig } from "astro/config";
-
 import sanityIntegration from "@sanity/astro";
 import react from "@astrojs/react";
-
+import alpine from '@astrojs/alpinejs';
 import { loadEnv } from "vite";
+
 const { PUBLIC_SANITY_PROJECT_ID, PUBLIC_SANITY_DATASET } = loadEnv(
   process.env.NODE_ENV,
   process.cwd(),
@@ -24,6 +24,10 @@ export default defineConfig({
       },
     }),
     react(),
+    alpine(
+      {
+        entrypoint: '/src/scripts/alpine.js',
+      }),
   ],
   output: "server",
 });

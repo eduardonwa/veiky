@@ -21,6 +21,7 @@ export const pageQuery = `
         _type,
         titulo,
         subtitulo,
+        orientacion,
         "imagenUrl": imagen.asset->url,
       },
       _type == "features" => {
@@ -66,6 +67,7 @@ export const homePageQuery = `
         _type,
         titulo,
         subtitulo,
+        orientacion,
         "imagenUrl": imagen.asset->url,
       },
       _type == "features" => {
@@ -73,7 +75,8 @@ export const homePageQuery = `
         titulo,
         caracteristicas[] {
           titulo,
-          texto
+          texto,
+          "imagenUrl": imagen.asset->url,
         }
       },
       _type == "faqs" => {
@@ -84,6 +87,18 @@ export const homePageQuery = `
           "faqText": body[].children[].text
         }
       }
+    }
+  }
+`;
+
+export const navbarQuery = `
+  *[_type == "navigation"][0] {
+    "logoUrl": logo.asset->url,
+    navItems[]-> {
+      _id,
+      title,
+      slug,
+      isHome,
     }
   }
 `;

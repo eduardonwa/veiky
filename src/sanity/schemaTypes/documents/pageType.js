@@ -11,24 +11,8 @@ export const pageType = defineType({
     defineField({
       name: "title",
       type: "string",
-    }),
-    defineField({
-      name: "slug",
-      type: "slug",
-      options: {
-        source: "title",
-      },
-    }),
-    defineField({
-      name: "content",
-      type: "pageBuilder",
-    }),
-    defineField({
-      name: "mainImage",
-      type: "image",
-      options: {
-        hotspot: true,
-      },
+      title: 'Título de la página',
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'isHome',
@@ -44,7 +28,7 @@ export const pageType = defineType({
           }
 
           if (!isHome) return true; // No hay necesidad de validar si no es la página principal
-
+          
           const pages = await client.fetch(
             `*[_type == "page" && isHome == true && _id != $currentId]`,
             { currentId: document._id }
@@ -53,7 +37,53 @@ export const pageType = defineType({
             ? true
             : 'Solo una página puede ser la principal.';
         }),
-    })
+    }),
+    defineField({
+      name: 'slug',
+      type: 'slug',
+      title: 'Slug',
+      options: {
+        source: (doc) => {
+          // Si la página es la principal, el slug será "/"
+          if (doc.isHome) {
+            return '/';
+          }
+          // Si no, genera el slug basado en el título
+          return doc.title;
+        },
+        slugify: (input) => {
+          // Si el input es "/", devuelve "/" directamente
+          if (input === '/') {
+            return '/';
+          }
+          // Si no, usa slugify para generar el slug
+          return slugify(input, { lower: true, strict: true });
+        },
+      },
+      validation: (Rule) =>
+        Rule.custom((slug, context) => {
+          const { parent } = context;
+
+          // Si la página es la principal, el slug debe ser "/"
+          if (parent?.isHome) {
+            return slug?.current === '/' ? true : 'El slug debe ser "/" para la página principal.';
+          }
+
+          // Si no es la página principal, no hay restricciones adicionales
+          return true;
+        }),
+    }),
+    defineField({
+      name: "content",
+      type: "pageBuilder",
+    }),
+    defineField({
+      name: "mainImage",
+      type: "image",
+      options: {
+        hotspot: true,
+      },
+    }),
   ],
   preview: {
     select: {

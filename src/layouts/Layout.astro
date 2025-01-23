@@ -1,9 +1,28 @@
 ---
 // @ts-ignore
 import { VisualEditing } from "@sanity/astro/visual-editing";
+import { navbarQuery } from '../sanity/lib/queries';
+import { loadQuery } from '../sanity/lib/load-query';
+import Navbar from '../components/Navbar.astro';
 import '/src/styles/main.scss';
 
 const { title } = Astro.props;
+
+let enabled
+const referrer = Astro.url.href
+// si preview esta en la URI, mostrar borradores
+if (referrer.includes('preview')) {
+  enabled = 'true'
+} else {
+  enabled = 'false'
+}
+
+const { data: navbar } = await loadQuery({
+  query: navbarQuery,
+  params: {},
+  enabled,
+});
+
 const visualEditingEnabled =
   import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED == "true";
 ---
@@ -14,9 +33,13 @@ const visualEditingEnabled =
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
+
     <title>{title}</title>
   </head>
   <body>
+    
+    <Navbar navbar={navbar} />
+
     <slot />
     <VisualEditing enabled={visualEditingEnabled} />
   </body>

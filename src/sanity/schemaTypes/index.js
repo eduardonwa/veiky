@@ -14,6 +14,8 @@ import { faqsType } from "./objects/faqs";
 import { featuresType } from "./objects/features";
 import { pageBuilderType } from "./documents/pageBuilder";
 import { pageType } from "./documents/pageType";
+import { siteSettingsType } from "./documents/siteSettings";
+import { navigationType } from "./documents/navigation";
 
 export const schema = {
   types: [
@@ -33,5 +35,7 @@ export const schema = {
     featuresType,
     pageBuilderType,
     pageType,
+    navigationType,
+    siteSettingsType,
   ],
 };

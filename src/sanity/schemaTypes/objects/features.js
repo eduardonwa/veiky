@@ -29,6 +29,10 @@ export const featuresType = defineType({
               name: "texto",
               type: "text",
             }),
+            defineField({
+              name: 'imagen',
+              type: 'image',
+            }),
           ],
         }),
       ],

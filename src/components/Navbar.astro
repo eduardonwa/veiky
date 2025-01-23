@@ -1,0 +1,29 @@
+---
+const { navbar } = Astro.props;
+---
+<nav class="site-header">
+  <!-- Enlaces de navegación -->
+  {navbar?.navItems ? (
+    <div class="site-header__inner">
+      {navbar?.logoUrl && (
+        <a href="/">
+          <img src={navbar.logoUrl} alt="Logo" />
+        </a>
+      )}
+
+      <ul class="nav">
+        {navbar.navItems.map((item) => {
+          // Si el item es la página principal, el href debe ser "/"
+          const href = item.isHome ? '/' : `/${item.slug.current}`;
+          return (
+            <li>
+              <a href={href}>{item.title}</a>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  ) : (
+    <p>No hay enlaces de navegación disponibles.</p>
+  )}
+</nav>

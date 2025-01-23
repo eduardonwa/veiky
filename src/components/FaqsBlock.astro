@@ -1,14 +1,32 @@
 ---
 const { title, faqs } = Astro.props;
 ---
-<section class="faq-section">
+<section
+  class="faq | section container"
+  data-type="narrow"
+>
   <h2>{title}</h2>
-  <ul class="faq-list">
+
+  <div class="faq__list | flow" role="region">
     {faqs.map((faq, index) => (
-      <li class="faq-item">
-        <h3 class="faq-question">{faq.title}</h3>
-        <p class="faq-answer">{faq.faqText}</p>
-      </li>
+      <div
+        class="faq__list__item"
+        x-data="{ expanded: false }"
+        :key="index"
+      >
+        <button
+          :aria-expanded="expanded"
+          @click="expanded = !expanded"
+          class="item-question"
+        >
+          {faq.title}
+          <span x-show="expanded" aria-hidden="true">&minus;</span>
+          <span x-show="!expanded" aria-hidden="true">&plus;</span>
+        </button>
+        <p x-show="expanded" x-transition class="item-answer">
+            {faq.faqText}
+        </p>
+      </div>
     ))}
-  </ul>
+  </div>
 </section>

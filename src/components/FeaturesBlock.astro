@@ -1,14 +1,19 @@
 ---
-const { titulo, caracteristicas } = Astro.props;
+const { titulo, caracteristicas, imagenUrl } = Astro.props;
 ---
-<section class="features-section">
-  <h2>{titulo}</h2>
-  <ul class="features-list">
-    {caracteristicas.map((feature, index) => (
-      <li class="feature-item">
-        <h3 class="feature-title">{feature.titulo}</h3>
-        <p class="feature-text">{feature.texto}</p>
-      </li>
-    ))}
-  </ul>
+<section class="features | section">
+  <div class="container" data-type="">
+    <article class="features__inner | flow">
+      <h2>{titulo}</h2>
+      <ul class="features__list | even-columns">
+        {caracteristicas.map((feature, index) => (
+          <li class="features__list__item">
+            <img class="features__list__item__img" src={feature.imagenUrl} alt="" loading="lazy" />
+            <h3 class="features__list__item__title">{feature.titulo}</h3>
+            <p class="features__list__item__text">{feature.texto}</p>
+          </li>
+        ))}
+      </ul>
+    </article>
+  </div>
 </section>

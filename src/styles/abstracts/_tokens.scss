@@ -70,21 +70,21 @@ $container-max-width-narrow: 40rem;
 $container-max-width-wide: 75rem;
 
 // site header
-$site-header-background-color: $color-primary-300;
-$site-header-color: $color-neutral-900;
-$site-header-padding: $size-8 0;
+$site-header-background-color: $color-neutral-800;
+$site-header-color: $color-neutral-000;
+$site-header-padding: $size-4 $size-15;
 $site-header-margin: 0;
-$site-header-jusitifcation-small-screens: center;
+$site-header-jusitifcation-small-screens: space-around;
 $site-header-jusitifcation-large-screens: space-between;
 $site-header-alignment: center;
 
 //navigation
 $navigation-color: $site-header-color;
-$navigation-color-hover: $color-primary-300;
+$navigation-color-hover: $color-primary-500;
 $navigation-font-size: $font-size-400;
 $navigation-gap: $size-9;
 $navigation-link-text-decoration: none;
-$navigation-font-family: $body-font-family;
+$navigation-font-family: $font-family-accent;
 $navigation-font-weight: $body-font-weight;
 
 // site footer

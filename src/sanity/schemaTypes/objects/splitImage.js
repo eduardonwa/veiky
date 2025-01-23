@@ -26,6 +26,9 @@ export const splitImageType = defineType({
     defineField({
       name: "imagen",
       type: "image",
+      options: {
+        hotspot: true,
+      },
     }),
   ],
   icon: BlockContentIcon,

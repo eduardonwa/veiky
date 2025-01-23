@@ -2,41 +2,46 @@
 const { encabezado = "", subtitulo = "", imagenUrl = "", testimonio = "", botonCTA = null } = Astro.props;
 ---
 <header
-  class="hero | margin-block-end-12"
+  class="hero | margin-block-6"
   role="banner"
 >
-  <!-- imagen de fondo -->
-  {imagenUrl &&
-    <img
-      class="hero__bg"
-      src={imagenUrl}
-      alt=""
-      loading="lazy"
-      aria-hidden="true"
-    />
-  }
+  <!-- contenido heroe -->
+  <div class="hero__copy | even-columns" style="--grid-gap: 5rem">
+    <div class="flow">
+      <h1>{encabezado}</h1>
+      
+      {subtitulo &&
+        <p style="--flow-spacer: 2rem">{subtitulo}</p>
+      }
+               
+      {botonCTA && (
+        <a 
+          role="button"
+          class="button margin-block-8"
+          data-type="accent"
+          href={botonCTA.enlace}
+          aria-label={`Ir a ${botonCTA.texto}`}>
+            {botonCTA.texto}
+        </a>
+      )}
 
-  <div class="hero__copy">
-    <!-- contenido heroe -->
-    <h1>{encabezado}</h1>
-    
-    {subtitulo &&
-      <p>{subtitulo}</p>
+      {testimonio &&
+        <blockquote>
+          {testimonio}
+        </blockquote>
+      }
+  </div>
+  
+  <!-- img-->
+  <div>
+    {imagenUrl &&
+      <img
+        class="hero__img"
+        src={imagenUrl}
+        alt=""
+        loading="lazy"
+        aria-hidden="true"
+      />
     }
-        
-    {testimonio &&
-      <blockquote>
-        {testimonio}
-      </blockquote>
-    }
-    
-    {botonCTA && (
-      <a 
-        role="button"
-        href={botonCTA.enlace}
-        aria-label={`Ir a ${botonCTA.texto}`}>
-          {botonCTA.texto}
-      </a>
-    )}
   </div>
 </header>

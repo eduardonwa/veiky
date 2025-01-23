@@ -20,8 +20,6 @@ const { data: homePage } = await loadQuery({
   enabled,
 });
 
-console.log(homePage);
-
 // Si no se encuentra la página principal, redirigir a 404
 if (!homePage || !homePage.content || !Array.isArray(homePage.content)) {
   return Astro.redirect('/404');

@@ -1,0 +1,59 @@
+@use "../abstracts" as *;
+
+.faq {
+    padding: $size-4;
+
+    h2 {
+        font-size: $font-size-800;
+        font-family: $font-family-accent;
+        color: $color-neutral-800;
+        padding-block-end: $size-6;
+        text-align: center;
+    }
+
+    &__list {
+        list-style-type: none;
+
+        &__item {
+            padding-block-end: $size-6;
+
+            &:last-child {
+                padding-block-end: 0;
+            }
+            
+            .item-question {
+                // boton
+                border: 2px solid;
+                width: 100%;
+                background-color: transparent;
+                text-align: start;
+                cursor: pointer;
+                // estilos generales
+                color: $color-primary-500;
+                padding-block-end: $size-2;
+                font-size: $font-size-500;
+                padding: $size-4;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+
+                span {
+                    font-size: $font-size-600;
+                }
+                
+                &:hover {
+                    background-color: $color-primary-500;
+                    color: $color-neutral-100;
+                    border: 2px solid $color-primary-100;
+                }
+            }
+
+            .item-answer {
+                padding: $size-4 $size-2;
+                line-height: 1.6;
+                font-size: $font-size-500;
+            }
+        }
+    }
+}

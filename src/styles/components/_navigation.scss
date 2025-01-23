@@ -5,10 +5,13 @@
   list-style: none;
   font-family: $navigation-font-family;
   font-weight: $navigation-font-weight;
+  display: flex;
+  gap: $size-4;
 
   a {
     color: $navigation-color;
     text-decoration: $navigation-link-text-decoration;
+    font-size: $font-size-500;
 
     &:is(:hover, :focus) {
       color: $navigation-color-hover;

@@ -3,7 +3,17 @@
 .site-header {
   color: $site-header-color;
   background-color: $site-header-background-color;
-  padding: $site-header-padding;
+  @include mq(small) {
+    padding: $size-4;
+  }
+
+  @include mq(medium) {
+    padding: $size-4 $size-10;
+  }
+
+  @include mq(large) {
+    padding: $site-header-padding;
+  }
 
   &__inner {
     display: flex;
