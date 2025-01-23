@@ -10,6 +10,7 @@ export const pageBuilderType = defineType({
     defineArrayMember({ type: "faqs" }),
     defineArrayMember({ type: "card" }),
     defineArrayMember({ type: "cardSet" }),
+    defineArrayMember({ type: "staticGallery" }),
   ],
   options: {
     insertMenu: {

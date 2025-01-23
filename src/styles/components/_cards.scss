@@ -12,7 +12,7 @@
   border-radius: $card-border-radius;
 
   @include mq(large) {
-    width: 30ch;
+    width: 32ch;
   }
 
   &__heading {

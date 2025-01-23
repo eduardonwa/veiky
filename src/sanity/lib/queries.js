@@ -76,6 +76,16 @@ export const pageQuery = `
           }
         }
       },
+      _type == "staticGallery" => {
+        _type,
+        titulo,
+        subtitulo,
+        imagen[] {
+          "imagenUrl": imagen.asset->url,
+          titulo,
+          subtitulo,
+        }
+      },
     }
   }
 `;
@@ -150,6 +160,16 @@ export const homePageQuery = `
               slug,
             }
           }
+        }
+      },
+      _type == "staticGallery" => {
+        _type,
+        titulo,
+        subtitulo,
+        imagen[] {
+          "imagenUrl": imagen.asset->url,
+          titulo,
+          subtitulo,
         }
       },
     }

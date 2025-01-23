@@ -1,0 +1,27 @@
+---
+const { titulo = "", subtitulo = "", imagen = [] } = Astro.props;
+if (!titulo || !subtitulo || imagen.length === 0) {
+    return null;
+}
+---
+<section class="container section">
+    <div class="static-gallery">
+        <header class="static-gallery__header | text-center flow margin-block-end-10">
+            <h2 class="fs-800 ff-accent">{titulo}</h2>
+            <p class="fs-600">{subtitulo}</p>
+        </header>
+
+        <article class="static-gallery__inner | grid-auto-fit" style="--grid-gap: 4rem">
+            {imagen.map((img) => (
+            <div class="static-gallery__item | flow ">
+                <div class="static-gallery__item__img-wrap">
+                    <img class="border-radius-1" src={img.imagenUrl} alt={img.titulo} />
+                </div>
+
+                <h3 class="ff-accent fs-600">{img.titulo}</h3>
+                <p class="fs-500">{img.subtitulo}</p>
+            </div>
+            ))}
+        </article>
+    </div>
+</section>

@@ -1,0 +1,32 @@
+@use "../abstracts/" as *;
+
+.static-gallery {
+    padding: $size-4;
+
+    &__item {
+        h3, p {
+            text-align: center;
+
+            @include mq(medium) {
+                text-align: start;
+            }
+        }
+
+        &__img-wrap {
+            width: 250px;
+            height: auto;
+            margin: auto;
+            
+            @include mq(medium) {
+                margin: 0;
+            }
+        
+            img {
+              aspect-ratio: 1;
+              object-fit: cover;
+              width: 100%;
+              height: 100%;
+            }
+        }
+    }
+}

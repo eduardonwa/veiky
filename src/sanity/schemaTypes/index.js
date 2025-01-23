@@ -18,6 +18,8 @@ import { siteSettingsType } from "./documents/siteSettings";
 import { navigationType } from "./documents/navigation";
 import { cardType } from "./objects/card";
 import { cardSetType } from "./objects/cardSet";
+import { imagenTextoType } from "./objects/imagenTexto";
+import { staticGalleryType } from "./objects/staticGallery";
 
 export const schema = {
   types: [
@@ -41,5 +43,7 @@ export const schema = {
     siteSettingsType,
     cardType,
     cardSetType,
+    imagenTextoType,
+    staticGalleryType,
   ],
 };
